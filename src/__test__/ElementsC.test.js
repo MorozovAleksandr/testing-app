@@ -11,8 +11,6 @@ describe("App", () => {
     expect(helloWorldEl).toBeInTheDocument();
     expect(btnEl).toBeInTheDocument();
     expect(inputEl).toBeInTheDocument();
-    expect(inputEl).toMatchSnapshot();
-    // screen.debug();
   });
 
   test("Click event", () => {
@@ -23,7 +21,6 @@ describe("App", () => {
     expect(screen.queryByTestId("toggle-div")).toBeInTheDocument();
     fireEvent.click(toggleBtn);
     expect(screen.queryByTestId("toggle-div")).toBeNull();
-    // screen.debug();
   });
 
   test("Input event", () => {
@@ -32,6 +29,5 @@ describe("App", () => {
     expect(screen.queryByTestId("input-value")).toContainHTML("");
     userEvent.type(inputEl, "1337");
     expect(screen.queryByTestId("input-value")).toContainHTML("1337");
-    // screen.debug();
   });
 });

@@ -8,18 +8,22 @@ import "./App.css";
 import Users from "./pages/UsersPage/Users";
 import UsersDeatailsPage from "./pages/UsersDeatailsPage/UsersDeatailsPage";
 
+import "./App.css";
+
 const App = () => {
   return (
     <>
-      <Link to="/" data-testid="main-link">
-        main
-      </Link>
-      <Link to="about" data-testid="about-link">
-        about
-      </Link>
-      <Link to="users" data-testid="users-link">
-        users
-      </Link>
+      <div className={"links"}>
+        <Link className={"link"} to="/" data-testid="main-link">
+          main
+        </Link>
+        <Link className={"link"} to="about" data-testid="about-link">
+          about
+        </Link>
+        <Link className={"link"} to="users" data-testid="users-link">
+          users
+        </Link>
+      </div>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/about" element={<AboutPage />} />
@@ -30,7 +34,5 @@ const App = () => {
     </>
   );
 };
-
-
 
 export default App;

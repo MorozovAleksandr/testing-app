@@ -1,6 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+import "./style.css";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -16,9 +18,14 @@ const Users = () => {
   }, []);
 
   return (
-    <div>
+    <div className={"UsersPage"}>
       {users.map((user) => (
-        <Link to={`/users/${user.id}`} key={user.id} data-testid="user-item">
+        <Link
+          to={`/users/${user.id}`}
+          key={user.id}
+          state={{ user }}
+          data-testid="user-item"
+        >
           {user.name}
         </Link>
       ))}
@@ -26,4 +33,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default memo(Users);
