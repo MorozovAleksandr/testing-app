@@ -2,13 +2,17 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
+import { Provider } from "react-redux";
+import { createReduxStore } from "../store/store";
 
 describe("Router test", () => {
   test("MainPage AboutPage", () => {
     render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
+      <Provider store={createReduxStore()}>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </Provider>
     );
     const mainLimnk = screen.getByTestId("main-link");
     const aboutLink = screen.getByTestId("about-link");
