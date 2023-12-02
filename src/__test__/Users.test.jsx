@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import Users from "../pages/UsersPage/Users";
 import axios from "axios";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter, Route, Routes } from "react-router-dom";
-import UsersDeatailsPage from "../pages/UsersDeatailsPage/UsersDeatailsPage";
+
+import { renderWithRouter } from "./helpers/renderWithRouter";
+import Users from "../pages/UsersPage/Users";
 
 jest.mock("axios");
 
@@ -39,11 +39,7 @@ describe("Users test", () => {
 
   test("users get and length", async () => {
     axios.get.mockReturnValue(response);
-    render(
-      <MemoryRouter>
-        <Users />
-      </MemoryRouter>
-    );
+    render(renderWithRouter(<Users />, "/user-item"));
     const users = await screen.findAllByTestId("user-item");
     expect(users.length).toBe(4);
     expect(users.length).not.toBe(3);
@@ -52,14 +48,7 @@ describe("Users test", () => {
 
   test("test redirect to details page", async () => {
     axios.get.mockReturnValue(response);
-    render(
-      <MemoryRouter initialEntries={["/users"]}>
-        <Routes>
-          <Route path="/users" element={<Users />} />
-          <Route path="/users/:id" element={<UsersDeatailsPage />} />
-        </Routes>
-      </MemoryRouter>
-    );
+    render(renderWithRouter(<Users />, "/user-item"));
     const users = await screen.findAllByTestId("user-item");
     userEvent.click(users[0]);
     expect(screen.getByTestId("userdetails-page")).toBeInTheDocument();
