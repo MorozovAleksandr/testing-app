@@ -1,6 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import Elements from "../components/Elements";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import Elements from "../components/Elements";
 
 describe("App", () => {
   test("Elements", () => {
