@@ -1,9 +1,11 @@
 import { getCounterValue } from "../store/reducers/selectors/getCounterValue/getCounterValue";
 
-describe("getCounterValue", () => {
-  test("work with empty state", () => {
+describe("getCounterValue test", () => {
+  test("empty counter", () => {
     expect(getCounterValue({})).toBe(0);
-    expect(getCounterValue({})).not.toBe(undefined);
-    expect(getCounterValue({})).not.toBe(null);
+  });
+
+  test("filled counter", () => {
+    expect(getCounterValue({ counter: { value: 10 } })).toBe(10);
   });
 });
