@@ -1,9 +1,9 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import Elements from "../components/Elements";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import Elements from "../components/Elements";
 
-describe("App", () => {
-  test("Elements", () => {
+describe("Elements test", () => {
+  test("in the Document", () => {
     render(<Elements />);
     const helloWorldEl = screen.getByText(/Hello world/i);
     const btnEl = screen.getByRole("button");
@@ -13,17 +13,17 @@ describe("App", () => {
     expect(inputEl).toBeInTheDocument();
   });
 
-  test("Click event", () => {
+  test("click event", () => {
     render(<Elements />);
     const toggleBtn = screen.getByTestId("toggle-btn");
     expect(screen.queryByTestId("toggle-div")).toBeNull();
     fireEvent.click(toggleBtn);
-    expect(screen.queryByTestId("toggle-div")).toBeInTheDocument();
+    expect(screen.getByTestId("toggle-div")).toBeInTheDocument();
     fireEvent.click(toggleBtn);
     expect(screen.queryByTestId("toggle-div")).toBeNull();
   });
 
-  test("Input event", () => {
+  test("input event", () => {
     render(<Elements />);
     const inputEl = screen.getByPlaceholderText(/some text.../i);
     expect(screen.queryByTestId("input-value")).toContainHTML("");

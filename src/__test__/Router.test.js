@@ -1,33 +1,26 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter } from "react-router-dom";
-import App from "../App";
-import { Provider } from "react-redux";
-import { createReduxStore } from "../store/store";
+import Navbar from "../components/Navbar/Navbar";
+import { renderWithRedux } from "./helpers/renderWithRedux";
+import { renderWithRouter } from "./helpers/renderWithRouter";
 
 describe("Router test", () => {
-  test("MainPage AboutPage", () => {
-    render(
-      <Provider store={createReduxStore()}>
-        <MemoryRouter>
-          <App />
-        </MemoryRouter>
-      </Provider>
-    );
-    const mainLimnk = screen.getByTestId("main-link");
+  test("to about-page", () => {
+    render(renderWithRedux(renderWithRouter(<Navbar />)));
     const aboutLink = screen.getByTestId("about-link");
     userEvent.click(aboutLink);
     expect(screen.getByTestId("about-page")).toBeInTheDocument();
+  });
+
+  test("to main-page", () => {
+    render(renderWithRedux(renderWithRouter(<Navbar />)));
+    const mainLimnk = screen.getByTestId("main-link");
     userEvent.click(mainLimnk);
     expect(screen.getByTestId("main-page")).toBeInTheDocument();
   });
 
-  test("ErrorPage", () => {
-    render(
-      <MemoryRouter initialEntries={["/random"]}>
-        <App />
-      </MemoryRouter>
-    );
+  test("to error-page", () => {
+    render(renderWithRouter(<Navbar />, "/random"));
     expect(screen.getByTestId("page-not-found")).toBeInTheDocument();
   });
 });
