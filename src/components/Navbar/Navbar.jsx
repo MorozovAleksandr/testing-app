@@ -11,6 +11,9 @@ const Navbar = () => (
     <Link className={"link"} to="users" data-testid="users-link">
       users
     </Link>
+    <Link className={"link"} to="hello" data-testid="hello-link">
+      hello
+    </Link>
   </div>
 );
 
