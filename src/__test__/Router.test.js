@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar/Navbar";
 import { renderWithRedux } from "./helpers/renderWithRedux";
 import { renderWithRouter } from "./helpers/renderWithRouter";
 
-describe("Router test", () => {
+describe("Router test!", () => {
   test("to about-page", () => {
     render(renderWithRedux(renderWithRouter(<Navbar />)));
     const aboutLink = screen.getByTestId("about-link");
