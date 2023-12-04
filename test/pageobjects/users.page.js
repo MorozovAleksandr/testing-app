@@ -18,6 +18,7 @@ class UsersPage extends Page {
   async loadData() {
     try {
       await this.open();
+      // waitForDisplayed - ожидаем что будет видимым на странице в течении 2с.
       await this.loadingTitle.waitForDisplayed({ timeout: 2000 });
       await this.usersList.waitForDisplayed({ timeout: 2000 });
     } catch (e) {
